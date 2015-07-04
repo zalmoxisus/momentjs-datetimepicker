@@ -906,12 +906,10 @@
 					var currentDate = _xdsoft_datetime.getCurrentTime(), minDate, maxDate;
 					currentDate = newMoment(currentDate.year(), currentDate.month(), currentDate.date());
 					minDate = _xdsoft_datetime.strToDate(options.minDate);
-					minDate = newMoment(minDate.year(), minDate.month(), minDate.date());
 					if (currentDate < minDate) {
 						return;
 					}
 					maxDate = _xdsoft_datetime.strToDate(options.maxDate);
-					maxDate = newMoment(maxDate.year(), maxDate.month(), maxDate.date());
 					if (currentDate > maxDate) {
 						return;
 					}
@@ -1025,13 +1023,10 @@
 
 						if (options.maxDate !== false) {
 							maxDate = _xdsoft_datetime.strToDate(options.maxDate);
-							maxDate = newMoment([maxDate.year(), maxDate.month(), maxDate.date(), 23, 59, 59, 999]);
 						}
 
 						if (options.minDate !== false) {
 							minDate = _xdsoft_datetime.strToDate(options.minDate);
-							//minDate = newMoment([minDate.year(), minDate.month(), minDate.date()]);
-							//maxDate = newMoment([maxDate.year(), maxDate.month(), maxDate.date()]);
 						}
 
 						var firstDayOfWeek = start.localeData().firstDayOfWeek();
