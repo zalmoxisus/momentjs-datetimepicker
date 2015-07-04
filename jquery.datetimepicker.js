@@ -480,6 +480,11 @@
 							.replace(/\{digit([0-9]{1})\}/g, '[0-$1_]{1}')
 							.replace(/\{digit[\+]\}/g, '[0-9_]{1}');
 						return (new RegExp(reg)).test(value);
+					},
+					HighlightedDate = function (date, desc, style) {
+						this.date = date;
+						this.desc = desc;
+						this.style = style;
 					};
 				options = $.extend(true, {}, options, _options);
 
@@ -1565,10 +1570,3 @@
 	};
 	$.fn.datetimepicker.defaults = default_options;
 }(jQuery));
-
-function HighlightedDate(date, desc, style) {
-	"use strict";
-	this.date = date;
-	this.desc = desc;
-	this.style = style;
-}
