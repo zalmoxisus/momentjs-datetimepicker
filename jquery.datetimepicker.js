@@ -35,6 +35,7 @@
 		maxDate: false,
 		minTime: false,
 		maxTime: false,
+		minDateTime: false,
 		disabledMinTime: false,
 		disabledMaxTime: false,
 
@@ -1132,10 +1133,10 @@
 							optionDateTime.hour(h);
 							optionDateTime.minute(m);
 							classes = [];
-							if ((options.minDateTime !== false && options.minDateTime > optionDateTime) || (options.maxTime !== false && _xdsoft_datetime.strtotime(options.maxTime).getTime() < now.getTime()) || (options.minTime !== false && _xdsoft_datetime.strtotime(options.minTime).getTime() > now.getTime())) {
+							if ((options.minDateTime !== false && options.minDateTime.valueOf() > optionDateTime.valueOf()) || (options.maxTime !== false && _xdsoft_datetime.strtotime(options.maxTime).valueOf() < now.valueOf()) || (options.minTime !== false && _xdsoft_datetime.strtotime(options.minTime).valueOf() > now.valueOf())) {
 								classes.push('xdsoft_disabled');
 							}
-							if ((options.minDateTime !== false && options.minDateTime > optionDateTime) || ((options.disabledMinTime !== false && now.getTime() > _xdsoft_datetime.strtotime(options.disabledMinTime).getTime()) && (options.disabledMaxTime !== false && now.getTime() < _xdsoft_datetime.strtotime(options.disabledMaxTime).getTime()))) {
+							if ((options.minDateTime !== false && options.minDateTime.valueOf() > optionDateTime.valueOf()) || ((options.disabledMinTime !== false && now.valueOf() > _xdsoft_datetime.strtotime(options.disabledMinTime).valueOf()) && (options.disabledMaxTime !== false && now.valueOf() < _xdsoft_datetime.strtotime(options.disabledMaxTime).valueOf()))) {
 								classes.push('xdsoft_disabled');
 							}
 
