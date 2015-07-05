@@ -59,7 +59,6 @@
 		hours12: false,
 		next: 'xdsoft_next',
 		prev : 'xdsoft_prev',
-		dayOfWeekStart: 0,
 		parentID: 'body',
 		timeHeightInTimePicker: 25,
 		timepickerScrollbar: true,
@@ -587,12 +586,6 @@
 					}
 				}
 
-				if (isNaN(options.dayOfWeekStart)) {
-					options.dayOfWeekStart = 0;
-				} else {
-					options.dayOfWeekStart = parseInt(options.dayOfWeekStart, 10) % 7;
-				}
-
 				if (!options.timepickerScrollbar) {
 					timeboxparent.xdsoftScroller('hide');
 				}
@@ -719,7 +712,6 @@
 							datetimepicker.trigger('changedatetime.xdsoft');
 						});
 				}
-				options.dayOfWeekStartPrev = (options.dayOfWeekStart === 0) ? 6 : options.dayOfWeekStart - 1;
 
 				datetimepicker
 					.trigger('xchange.xdsoft')
@@ -1009,6 +1001,8 @@
 							h = '',
 							line_time,
 							description;
+						var firstDayOfWeek = start.localeData().firstDayOfWeek();
+						var lastDayOfWeek = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
 
 						start.startOf('week');
 						start.hour(12);
@@ -1020,7 +1014,7 @@
 						}
 
 						for (j = 0; j < 7; j += 1) {
-							table += '<th>' + newMoment(_xdsoft_datetime.currentTime).day(j).format('dd') + '</th>';
+							table += '<th>' + newMoment(_xdsoft_datetime.currentTime).day((j + firstDayOfWeek) % 7).format('dd') + '</th>';
 						}
 
 						table += '</tr></thead>';
@@ -1034,8 +1028,6 @@
 							minDate = _xdsoft_datetime.strToDate(options.minDate);
 						}
 
-						var firstDayOfWeek = start.localeData().firstDayOfWeek();
-						var lastDayOfWeek = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
 						while (i < _xdsoft_datetime.currentTime.daysInMonth() || start.day() !== firstDayOfWeek || _xdsoft_datetime.currentTime.month() === start.month()) {
 							classes = [];
 							i += 1;
