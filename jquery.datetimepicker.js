@@ -499,7 +499,7 @@
 					$.each(_options.highlightedDates, function (index, value) {
 						var splitData = $.map(value.split(','), $.trim),
 							exDesc,
-							hDate = new HighlightedDate(Date.parseDate(splitData[0], options.formatDate), splitData[1], splitData[2]), // date, desc, style
+							hDate = new HighlightedDate(parseDate(splitData[0], options.formatDate), splitData[1], splitData[2]), // date, desc, style
 							keyDate = hDate.date.dateFormat(options.formatDate);
 						if (highlightedDates[keyDate] !== undefined) {
 							exDesc = highlightedDates[keyDate].desc;
@@ -518,8 +518,8 @@
 					highlightedDates = $.extend(true, [], options.highlightedDates);
 					$.each(_options.highlightedPeriods, function (index, value) {
 						var splitData = $.map(value.split(','), $.trim),
-							dateTest = Date.parseDate(splitData[0], options.formatDate), // start date
-							dateEnd = Date.parseDate(splitData[1], options.formatDate),
+							dateTest = parseDate(splitData[0], options.formatDate), // start date
+							dateEnd = parseDate(splitData[1], options.formatDate),
 							desc = splitData[2],
 							hDate,
 							keyDate,
@@ -691,7 +691,7 @@
 							if (options.allowBlank && !$.trim($(this).val()).length) {
 								$(this).val(null);
 								datetimepicker.data('xdsoft_datetime').empty();
-							} else if (!Date.parseDate($(this).val(), options.format)) {
+							} else if (!parseDate($(this).val(), options.format)) {
 								var splittedHours   = +([$(this).val()[0], $(this).val()[1]].join('')),
 									splittedMinutes = +([$(this).val()[2], $(this).val()[3]].join(''));
 
